@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub — Descoperă lumea programării</title>
+<style>
+:root {
+  --bg:#0d1117;
+  --panel:#161b22;
+  --border:#30363d;
+  --text:#f0f6fc;
+  --muted:#9198a1;
+  --green:#238636;
+  --blue:#58a6ff;
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65;
+}
+a {text-decoration:none;color:inherit}
+
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  padding:17px 6%;
+  border-bottom:1px solid var(--border);
+  background:rgba(31, 38, 49, 0.96);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.logo {font-size:23px;font-weight:bold;white-space:nowrap}
+.logo span {font-size:27px;margin-right:7px}
+
+nav {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:22px;
+  margin-left:auto;
+}
+nav a {font-size:14px;color:#c9d1d9;white-space:nowrap}
+nav a:hover {color:var(--blue)}
+
+.btn {
+  display:inline-block;padding:11px 18px;border-radius:7px;
+  border:1px solid var(--border);font-weight:bold;
+  transition:.2s;cursor:pointer;
+}
+.btn:hover {transform:translateY(-2px);filter:brightness(1.15)}
+.btn-green {background:#da45b2;border-color:#da45b2;color:white}
+.btn-outline {color:var(--text)}
+
+.hero {
+  padding:100px 7% 75px;text-align:center;
+  background:radial-gradient(ellipse at 50% 0%,#3e7fd3 0%,#222b39 60%);
+}
+.eyebrow {
+  display:inline-block;border:1px solid #303d50;
+  background:#161b22;border-radius:30px;padding:7px 14px;
+  font-size:13px;color:#b8d9ff;margin-bottom:25px;
+}
+h1 {
+  font-size:clamp(38px,6vw,72px);line-height:1.1;
+  letter-spacing:-2px;max-width:950px;margin:0 auto 24px
+}
+.gradient {
+  background:linear-gradient(90deg,#79c0ff,#d2a8ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p {max-width:720px;margin:0 auto;color:#a8b3c2;font-size:18px}
+.hero-buttons {display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero-note {font-size:12px!important;margin-top:17px!important}
+
+.illustration {
+  max-width:960px;margin:65px auto 0;
+  border:1px solid #39414d;border-radius:12px;
+  overflow:hidden;background:#10151d;text-align:left;
+  box-shadow:0 25px 100px #0008;
+}
+.windowbar {
+  display:flex;align-items:center;gap:7px;
+  padding:13px 17px;background:#161b22;border-bottom:1px solid var(--border);
+}
+.circle {width:10px;height:10px;border-radius:50%;background:#e99e9a}
+.circle:nth-child(2){background:#90b5df}
+.circle:nth-child(3){background:#79a47f}
+.window-title {margin:auto;color:var(--muted);font-size:12px}
+.demo-body {display:grid;grid-template-columns:210px 1fr;min-height:285px}
+.demo-sidebar {padding:23px 16px;border-right:1px solid var(--border)}
+.demo-sidebar div {padding:7px;color:#9ca7b5;font-size:13px}
+.demo-sidebar .selected {color:white;background:#263447;border-radius:5px}
+.demo-main {padding:25px;min-width:0}
+.demo-main h3 {margin-bottom:7px}
+.demo-main p {font-size:13px;color:var(--muted);margin-bottom:20px}
+.file {
+ display:flex;align-items:center;gap:12px;padding:12px;
+ border:1px solid var(--border);border-bottom:0;font-size:13px;
+}
+.file:first-of-type {border-radius:7px 7px 0 0}
+.file:last-child {border-bottom:1px solid var(--border);border-radius:0 0 7px 7px}
+.file span:last-child {margin-left:auto;color:var(--muted);font-size:12px}
+
+section {padding:85px 7%}
+.section-heading {text-align:center;max-width:740px;margin:0 auto 42px}
+.section-heading h2 {font-size:clamp(28px,4vw,43px);line-height:1.2;margin-bottom:15px;letter-spacing:-1px}
+.section-heading p {color:var(--muted);font-size:16px}
+.grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:1150px;margin:auto}
+.card {border:1px solid var(--border);background:var(--panel);border-radius:11px;padding:25px;transition:.2s}
+.card:hover {border-color:#64758b;transform:translateY(-3px)}
+.card-icon {font-size:27px;margin-bottom:16px}
+.card h3 {font-size:18px;margin-bottom:10px}
+.card p {font-size:14px;color:var(--muted)}
+.card a {display:inline-block;color:var(--blue);margin-top:17px;font-size:13px}
+
+.examples {background:#10151c;border-top:1px solid #21262d;border-bottom:1px solid #21262d}
+.example-card {overflow:hidden;padding:0}
+.example-top {padding:17px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.example-top span {font-size:23px}
+.example-content {padding:22px}
+.example-content h3 {font-size:17px}
+.example-content p {margin:9px 0 18px}
+.code {
+ background:#0d1117;border:1px solid var(--border);border-radius:7px;
+ padding:16px;font:12px/1.9 monospace;overflow:auto;color:#c9d1d9;
+ white-space:pre;
+}
+.purple {color:#d2a8ff}.orange {color:#ffa657}.blue {color:#79c0ff}.green {color:#94bfdd}
+.language-row {display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
+.language {font-size:12px;border:1px solid var(--border);padding:4px 9px;border-radius:20px;color:#c9d1d9}
+
+.benefit {display:flex;gap:16px;align-items:flex-start}
+.benefit-icon {font-size:24px;flex-shrink:0}
+.benefit h3 {font-size:17px;margin-bottom:7px}
+.benefit p {font-size:14px;color:var(--muted)}
+
+.stats {
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+ max-width:850px;margin:40px auto 0;
+}
+.stat {padding:22px;border:1px solid var(--border);border-radius:9px;text-align:center;background:#161b22}
+.stat strong {display:block;font-size:20px;margin-bottom:5px}
+.stat span {color:var(--muted);font-size:12px}
+
+.cta {text-align:center;padding:90px 20px;background:radial-gradient(ellipse at 50% 100%,#79abef,#232a35 58%)}
+.cta h2 {font-size:clamp(30px,5vw,48px);line-height:1.2;margin-bottom:15px}
+.cta p {color:var(--muted);margin-bottom:28px}
+
+footer {padding:35px 7%;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+.footer-inner {display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a {margin-left:16px}
+footer a:hover {color:var(--blue)}
+
+@media(max-width:850px) {
+ header {padding:14px 4%;gap:15px}
+ nav {gap:14px}
+ nav a {font-size:13px}
+ .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+ section {padding:65px 5%}
+ .hero {padding:75px 5% 55px}
+}
+@media(max-width:560px) {
+ header {padding:14px 4%;gap:12px;flex-wrap:wrap}
+ .logo {font-size:21px}
+ nav {
+   order:2;
+   flex-basis:100%;
+   justify-content:flex-end;
+   gap:16px;
+   overflow-x:auto;
+   padding:5px 0;
+ }
+ nav a {white-space:nowrap;font-size:12px}
+ .grid {grid-template-columns:1fr}
+ .demo-body {grid-template-columns:1fr}
+ .demo-sidebar {display:none}
+ .demo-main {padding:15px}
+ .file span:last-child {display:none}
+ .stats {grid-template-columns:1fr}
+ h1 {letter-spacing:-1px}
+ .hero p {font-size:16px}
+ section {padding:55px 5%}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#home" class="logo"><span>◉</span> GitHub</a>
+  <nav>
+    <a href="#despre">Ce este GitHub?</a>
+    <a href="#exemple">Exemple</a>
+    <a href="#avantaje">Avantaje</a>
+    <a href="#incepe">Începe</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="eyebrow">✦ Platforma dezvoltatorilor din întreaga lume</div>
+  <h1>Construiește viitorul.<br><span class="gradient">Împreună, prin cod.</span></h1>
+  <p>
+    GitHub este o platformă unde programatorii își păstrează codul,
+    colaborează la proiecte și transformă ideile în aplicații reale.
+  </p>
+  <div class="hero-buttons">
+    <a href="https://github.com/signup" class="btn btn-green">Creează un cont gratuit ↗</a>
+    <a href="#despre" class="btn btn-outline">Descoperă platforma ↓</a>
+  </div>
+  <p class="hero-note">Colaborează · Învață · Creează · Distribuie</p>
+
+  <div class="illustration">
+    <div class="windowbar">
+      <span class="circle"></span><span class="circle"></span><span class="circle"></span>
+      <span class="window-title">github.com / proiectul-meu</span>
+    </div>
+    <div class="demo-body">
+      <div class="demo-sidebar">
+        <div>⌂ &nbsp; Overview</div>
+        <div class="selected">▤ &nbsp; Repositories</div>
+        <div>⑂ &nbsp; Pull requests</div>
+        <div>◎ &nbsp; Issues</div>
+        <div>▦ &nbsp; Projects</div>
+      </div>
+      <div class="demo-main">
+        <h3>📁 proiectul-meu</h3>
+        <p>Un proiect demonstrativ pentru dezvoltarea unei aplicații web.</p>
+        <div class="file">📁 &nbsp; src <span>Codul aplicației</span></div>
+        <div class="file">📁 &nbsp; images <span>Imagini</span></div>
+        <div class="file">🌐 &nbsp; index.html <span>Pagina principală</span></div>
+        <div class="file">📘 &nbsp; README.md <span>Documentație</span></div>
+        <div class="file">🎨 &nbsp; style.css <span>Designul site-ului</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="despre">
+  <div class="section-heading">
+    <h2>Ce este GitHub?</h2>
+    <p>
+      GitHub este o platformă online bazată pe Git, un sistem de control
+      al versiunilor. Le permite dezvoltatorilor să gestioneze codul,
+      să urmărească modificările și să lucreze împreună.
+    </p>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="card-icon">📦</div>
+      <h3>Repository-uri</h3>
+      <p>Un repository este un spațiu în care sunt organizate fișierele, codul sursă și istoricul unui proiect.</p>
+    </article>
+    <article class="card">
+      <div class="card-icon">⌨️</div>
+      <h3>Controlul versiunilor</h3>
+      <p>Git păstrează istoricul modificărilor, astfel încât poți vedea ce s-a schimbat și când.</p>
+    </article>
+    <article class="card">
+      <div class="card-icon">🤝</div>
+      <h3>Colaborare</h3>
+      <p>Mai mulți dezvoltatori pot contribui la același proiect, pot discuta schimbări și pot revizui codul.</p>
+    </article>
+  </div>
+</section>
+
+<section class="examples" id="exemple">
+  <div class="section-heading">
+    <h2>Ce poți păstra pe GitHub?</h2>
+    <p>De la pagini web simple la proiecte complexe, poți organiza numeroase tipuri de fișiere.</p>
+  </div>
+  <div class="grid">
+    <article class="card example-card">
+      <div class="example-top"><span>🌐</span><b>index.html</b></div>
+      <div class="example-content">
+        <h3>Pagini web</h3>
+        <p>Structura unei pagini web realizate cu HTML.</p>
+        <div class="code"><span class="purple">&lt;h1&gt;</span>
+  <span class="green">Salut, lume!</span>
+<span class="purple">&lt;/h1&gt;</span>
+
+<span class="blue">&lt;p&gt;</span>
+  Prima mea pagină web.
+<span class="blue">&lt;/p&gt;</span></div>
+        <div class="language-row"><span class="language">HTML</span><span class="language">Web</span></div>
+      </div>
+    </article>
+
+    <article class="card example-card">
+      <div class="example-top"><span>🐍</span><b>main.py</b></div>
+      <div class="example-content">
+        <h3>Programe Python</h3>
+        <p>Scripturi, automatizări și proiecte de programare.</p>
+        <div class="code"><span class="purple">def</span> <span class="blue">salut</span>():
+    mesaj = <span class="orange">"Salut, GitHub!"</span>
+    <span class="purple">return</span> mesaj
+
+print(salut())</div>
+        <div class="language-row"><span class="language">Python</span><span class="language">Programare</span></div>
+      </div>
+    </article>
+
+    <article class="card example-card">
+      <div class="example-top"><span>📘</span><b>README.md</b></div>
+      <div class="example-content">
+        <h3>Documentație</h3>
+        <p>Explică scopul proiectului, instalarea și modul de utilizare.</p>
+        <div class="code"><span class="blue"># Proiectul meu</span>
+
+O aplicație web simplă.
+
+<span class="blue">## Instalare</span>
+
+1. Descarcă proiectul.
+2. Deschide fișierele.
+3. Urmează instrucțiunile.</div>
+        <div class="language-row"><span class="language">Markdown</span><span class="language">Documentație</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="avantaje">
+  <div class="section-heading">
+    <h2>Avantajele utilizării GitHub</h2>
+    <p>Instrumente utile pentru învățare, dezvoltare și lucrul în echipă.</p>
+  </div>
+  <div class="grid">
+    <article class="card benefit">
+      <div class="benefit-icon">☁️</div>
+      <div><h3>Cod online</h3><p>Îți poți accesa repository-urile de pe dispozitive diferite, prin internet.</p></div>
+    </article>
+    <article class="card benefit">
+      <div class="benefit-icon">🕓</div>
+      <div><h3>Istoricul modificărilor</h3><p>Poți consulta commit-urile și urmări evoluția proiectului.</p></div>
+    </article>
+    <article class="card benefit">
+      <div class="benefit-icon">👥</div>
+      <div><h3>Lucru în echipă</h3><p>Poți propune modificări și discuta idei cu alți dezvoltatori.</p></div>
+    </article>
+    <article class="card benefit">
+      <div class="benefit-icon">🔓</div>
+      <div><h3>Proiecte open-source</h3><p>Poți descoperi proiecte publice, învăța din cod și contribui la ele.</p></div>
+    </article>
+    <article class="card benefit">
+      <div class="benefit-icon">🚀</div>
+      <div><h3>Publicarea site-urilor</h3><p>GitHub Pages permite publicarea anumitor site-uri statice direct din repository.</p></div>
+    </article>
+    <article class="card benefit">
+      <div class="benefit-icon">💼</div>
+      <div><h3>Portofoliu personal</h3><p>Îți poți prezenta proiectele și demonstra ce știi să construiești.</p></div>
+    </article>
+  </div>
+</section>
+
+<section id="incepe" class="cta">
+  <h2>Ideile tale merită să fie construite.</h2>
+  <p>Învață, creează proiecte și descoperă comunitatea dezvoltatorilor.</p>
+  <a href="https://github.com/signup" class="btn btn-green">Începe cu GitHub ↗</a>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>◉ GitHub — Descoperă lumea dezvoltării software.</div>
+    <div>
+      <a href="#despre">Despre</a>
+      <a href="#exemple">Exemple</a>
+      <a href="#avantaje">Avantaje</a>
+      <a href="https://docs.github.com/">Documentație oficială</a>
+    </div>
+  </div>
+  <p style="margin-top:20px">Pagină educațională demonstrativă, realizată în HTML și CSS. Nu este site-ul oficial GitHub.</p>
+</footer>
+</body>
+</html>
